@@ -719,7 +719,7 @@ void futurerestore::enterPwnRecovery(plist_t build_identity, std::string bootarg
                       "Device did not disconnect. Possibly invalid iBEC. Reset device and try again");
 #endif
             info("Booting iBEC, waiting for device to reconnect...\n");
-            cond_wait_timeout(&_client->device_event_cond, &_client->device_event_mutex, 10000);
+            cond_wait_timeout(&_client->device_event_cond, &_client->device_event_mutex, 100000);
 #if __aarch64__
             retassure(((_client->mode == MODE_RECOVERY) || (mutex_unlock(&_client->device_event_mutex), 0)),
                       "Device did not reconnect. Possibly invalid iBEC. If you're using a USB-C to Lightning cable, switch to USB-A to Lightning (see issue #67)");
